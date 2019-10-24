@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import geneticalg.timetable.constraints.Constraint;
+import geneticalg.timetable.constraints.SuperpositionConstraint;
 
 public class Teacher {
 
@@ -16,7 +17,9 @@ public class Teacher {
 
 	private List<Course> timetable = new ArrayList<Course>();
 
-	public Teacher() {
+	public Teacher(String name) {
+		this.name = name;
+		constraints.add(new SuperpositionConstraint());
 		if (!teachers.stream().anyMatch(x -> x.getName().equals(this.name)))
 			teachers.add(this);
 	}

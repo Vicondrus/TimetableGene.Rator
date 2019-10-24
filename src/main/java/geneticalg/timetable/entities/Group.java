@@ -19,7 +19,8 @@ public class Group {
 
 	private List<Course> timetable = new ArrayList<Course>();
 
-	public Group() {
+	public Group(String number) {
+		this.number = number;
 		if (!groups.stream().anyMatch(x -> x.getNumber().equals(this.number)))
 			groups.add(this);
 		constraints.add(new SuperpositionConstraint());

@@ -6,6 +6,6 @@ import geneticalg.timetable.entities.Course;
 
 public interface Constraint {
 
-	Integer checkConstraint(List<Course> timetable);
+	Long checkConstraint(List<Course> timetable);
 	
 }

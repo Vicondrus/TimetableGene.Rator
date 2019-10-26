@@ -19,6 +19,18 @@ public class Course {
 	private Integer hour;
 
 	private WeekDay day;
+	
+	public Course(Group group, Teacher teacher, Integer hour, WeekDay day) {
+		super();
+		this.group = group;
+		this.teacher = teacher;
+		this.hour = hour;
+		this.day = day;
+	}
+	
+	public Course() {
+		
+	}
 
 	public static Course randomCourse(List<Teacher> teachers, List<Group> groups) {
 		Course c = new Course();

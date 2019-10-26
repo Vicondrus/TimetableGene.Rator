@@ -26,13 +26,27 @@ public class GroupWeeklyConstraint implements Constraint {
 			if (!map.containsKey(x.getTeacher())) {
 				sum += new Double(Math.pow(3.0, x.getHours())).longValue();
 			} else {
-				sum += new Double(Math.pow(3.0, Math.abs(x.getHours() - map.get(x.getTeacher())))).longValue();
+				if (x.getHours() - map.get(x.getTeacher()) != 0)
+					sum += new Double(Math.pow(3.0, Math.abs(x.getHours() - map.get(x.getTeacher())))).longValue();
 				map.remove(x.getTeacher());
 			}
 		}
-		sum += new Double(Math.pow(3.0, map.entrySet().stream().collect(Collectors.summingLong(x -> x.getValue()))))
-				.longValue();
+		Long y = map.entrySet().stream().collect(Collectors.summingLong(x -> x.getValue()));
+		if (y != 0)
+			sum += new Double(Math.pow(3.0, y)).longValue();
 		return sum;
+	}
+
+	public Integer getTotalHours() {
+		return necessaryHours.stream().collect(Collectors.summingInt(TeacherAmount::getHours));
+	}
+
+	public List<TeacherAmount> getNecessaryHours() {
+		return necessaryHours;
+	}
+
+	public void setNecessaryHours(List<TeacherAmount> necessaryHours) {
+		this.necessaryHours = necessaryHours;
 	}
 
 }

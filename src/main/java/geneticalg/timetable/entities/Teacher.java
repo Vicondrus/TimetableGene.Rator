@@ -24,6 +24,10 @@ public class Teacher {
 			teachers.add(this);
 	}
 
+	public void addConstraint(Constraint c) {
+		constraints.add(c);
+	}
+
 	public Long checkConstraints() {
 		if (constraints.isEmpty())
 			return 0L;

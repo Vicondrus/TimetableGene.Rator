@@ -17,7 +17,8 @@ public class SuperpositionConstraint implements Constraint {
 		Long sum = 0L;
 		for (Entry<WeekDay, Map<Integer, List<Course>>> e1 : map.entrySet()) {
 			for (Entry<Integer, List<Course>> e2 : e1.getValue().entrySet()) {
-				sum += new Double(Math.pow(3, e2.getValue().size())).longValue();
+				if (e2.getValue().size() > 1)
+					sum += new Double(Math.pow(3, e2.getValue().size())).longValue();
 			}
 		}
 		return sum;

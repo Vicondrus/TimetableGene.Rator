@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import geneticalg.timetable.constraints.Constraint;
+import geneticalg.timetable.constraints.GroupWeeklyConstraint;
 import geneticalg.timetable.constraints.SuperpositionConstraint;
 
 public class Group {
@@ -24,6 +25,18 @@ public class Group {
 		if (!groups.stream().anyMatch(x -> x.getNumber().equals(this.number)))
 			groups.add(this);
 		constraints.add(new SuperpositionConstraint());
+	}
+	
+	public void addConstraint(Constraint c) {
+		if(c instanceof GroupWeeklyConstraint)
+			addWeeklyConstraint((GroupWeeklyConstraint) c);
+		else
+			constraints.add(c);
+	}
+	
+	public void addWeeklyConstraint(GroupWeeklyConstraint c) {
+		noHours = c.getTotalHours();
+		constraints.add(c);
 	}
 
 	public Long checkConstraints() {

@@ -19,7 +19,7 @@ public class Course {
 	private Integer hour;
 
 	private WeekDay day;
-	
+
 	public Course(Group group, Teacher teacher, Integer hour, WeekDay day) {
 		super();
 		this.group = group;
@@ -27,9 +27,9 @@ public class Course {
 		this.hour = hour;
 		this.day = day;
 	}
-	
+
 	public Course() {
-		
+
 	}
 
 	public static Course randomCourse(List<Teacher> teachers, List<Group> groups) {
@@ -37,8 +37,8 @@ public class Course {
 		Random r = RandomRegistry.getRandom();
 		c.setDay(WeekDay.values()[random.nextInt(r, 0, 4)]);
 		c.setHour(random.nextInt(r, MIN_HOUR, MAX_HOUR));
-		c.setTeacher(teachers.get(random.nextInt(r, 0, teachers.size())));
-		c.setGroup(groups.get(random.nextInt(r, 0, groups.size())));
+		c.setTeacher(teachers.get(random.nextInt(r, 0, teachers.size() - 1)));
+		c.setGroup(groups.get(random.nextInt(r, 0, groups.size() - 1)));
 		return c;
 	}
 
@@ -77,4 +77,9 @@ public class Course {
 		this.day = day;
 	}
 
+	@Override
+	public String toString() {
+		return "Course [group=" + group + ", teacher=" + teacher + ", hour=" + hour + ", day=" + day + "]";
+	}
+	
 }

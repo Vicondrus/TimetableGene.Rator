@@ -26,17 +26,23 @@ public class Group {
 			groups.add(this);
 		constraints.add(new SuperpositionConstraint());
 	}
-	
+
 	public void addConstraint(Constraint c) {
-		if(c instanceof GroupWeeklyConstraint)
+		if (c instanceof GroupWeeklyConstraint)
 			addWeeklyConstraint((GroupWeeklyConstraint) c);
 		else
 			constraints.add(c);
 	}
-	
+
 	public void addWeeklyConstraint(GroupWeeklyConstraint c) {
 		noHours = c.getTotalHours();
 		constraints.add(c);
+	}
+
+	public Long checkConstraints(List<Course> timetable) {
+		if (constraints.isEmpty())
+			return 0L;
+		return constraints.stream().collect(Collectors.summingLong(x -> x.checkConstraint(timetable)));
 	}
 
 	public Long checkConstraints() {
@@ -90,6 +96,11 @@ public class Group {
 
 	public void setTimetable(List<Course> timetable) {
 		this.timetable = timetable;
+	}
+
+	@Override
+	public String toString() {
+		return number;
 	}
 
 }

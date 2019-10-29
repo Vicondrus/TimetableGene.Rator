@@ -12,6 +12,16 @@ public class SuperpositionConstraint implements Constraint {
 
 	@Override
 	public Long checkConstraint(List<Course> timetable) {
+//		timetable.stream().forEach(x -> {
+//			timetable.forEach(y -> System.out.println(y));
+//			if(x == null)
+//				System.out.println("CE PLM");
+//			if(x.getDay() == null)
+//				System.out.println("AICI II BAI");
+//			if(x.getHour() == null)
+//				System.out.println("SAU AICI");
+//		});
+		
 		Map<WeekDay, Map<Integer, List<Course>>> map = timetable.stream()
 				.collect(Collectors.groupingBy(Course::getDay, Collectors.groupingBy(Course::getHour)));
 		Long sum = 0L;

@@ -53,4 +53,9 @@ public class CourseGene implements Gene<Course, CourseGene> {
 		return new CourseGene(value);
 	}
 
+	@Override
+	public String toString() {
+		return value.toString();
+	}
+
 }

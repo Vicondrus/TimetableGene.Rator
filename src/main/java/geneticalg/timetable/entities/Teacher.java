@@ -28,6 +28,12 @@ public class Teacher {
 		constraints.add(c);
 	}
 
+	public Long checkConstraints(List<Course> timetable) {
+		if (constraints.isEmpty())
+			return 0L;
+		return constraints.stream().collect(Collectors.summingLong(x -> x.checkConstraint(timetable)));
+	}
+
 	public Long checkConstraints() {
 		if (constraints.isEmpty())
 			return 0L;
@@ -71,6 +77,11 @@ public class Teacher {
 
 	public void setTimetable(List<Course> timetable) {
 		this.timetable = timetable;
+	}
+
+	@Override
+	public String toString() {
+		return name;
 	}
 
 }

@@ -63,4 +63,13 @@ public class TimetableChromosome implements Chromosome<CourseGene> {
 		return iSeq;
 	}
 
+	@Override
+	public String toString() {
+		String s = "";
+		for (CourseGene cg : iSeq) {
+			s += cg;
+		}
+		return s;
+	}
+
 }

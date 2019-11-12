@@ -16,6 +16,8 @@ public class Teacher {
 	private List<Constraint> constraints = new ArrayList<Constraint>();
 
 	private List<Course> timetable = new ArrayList<Course>();
+	
+	private List<Room> rooms = new ArrayList<Room>();
 
 	public Teacher(String name) {
 		this.name = name;
@@ -26,6 +28,10 @@ public class Teacher {
 
 	public void addConstraint(Constraint c) {
 		constraints.add(c);
+	}
+	
+	public void addRoom(Room r) {
+		rooms.add(r);
 	}
 
 	public Long checkConstraints(List<Course> timetable) {
@@ -82,6 +88,14 @@ public class Teacher {
 	@Override
 	public String toString() {
 		return name;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 }

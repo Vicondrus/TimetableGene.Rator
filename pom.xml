@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>io.jenetics</groupId>
 			<artifactId>jenetics</artifactId>
-			<version>3.7.0</version>
+			<version>5.0.1</version>
 		</dependency>
 	</dependencies>
 	

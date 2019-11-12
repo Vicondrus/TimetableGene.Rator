@@ -2,13 +2,12 @@ package geneticalg.timetable.genetic;
 
 import java.util.List;
 
-import org.jenetics.Gene;
-import org.jenetics.util.ISeq;
-import org.jenetics.util.MSeq;
-
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Teacher;
+import io.jenetics.Gene;
+import io.jenetics.util.ISeq;
+import io.jenetics.util.MSeq;
 
 public class CourseGene implements Gene<Course, CourseGene> {
 

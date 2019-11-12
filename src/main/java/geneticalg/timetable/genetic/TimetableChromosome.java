@@ -2,12 +2,11 @@ package geneticalg.timetable.genetic;
 
 import java.util.Iterator;
 
-import org.jenetics.Chromosome;
-import org.jenetics.util.ISeq;
-
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Teacher;
+import io.jenetics.Chromosome;
+import io.jenetics.util.ISeq;
 
 public class TimetableChromosome implements Chromosome<CourseGene> {
 

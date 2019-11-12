@@ -24,16 +24,16 @@ public class GroupWeeklyConstraint implements Constraint {
 		Long sum = 0L;
 		for (TeacherAmount x : necessaryHours) {
 			if (!map.containsKey(x.getTeacher())) {
-				sum += new Double(Math.pow(3.0, x.getHours())).longValue();
+				sum += new Double(Math.pow(HARD_CONSTRAINT, x.getHours())).longValue();
 			} else {
 				if (x.getHours() - map.get(x.getTeacher()) != 0)
-					sum += new Double(Math.pow(3.0, Math.abs(x.getHours() - map.get(x.getTeacher())))).longValue();
+					sum += new Double(Math.pow(HARD_CONSTRAINT, Math.abs(x.getHours() - map.get(x.getTeacher())))).longValue();
 				map.remove(x.getTeacher());
 			}
 		}
 		Long y = map.entrySet().stream().collect(Collectors.summingLong(x -> x.getValue()));
 		if (y != 0)
-			sum += new Double(Math.pow(3.0, y)).longValue();
+			sum += new Double(Math.pow(HARD_CONSTRAINT, y)).longValue();
 		return sum;
 	}
 

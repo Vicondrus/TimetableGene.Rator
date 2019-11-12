@@ -3,22 +3,22 @@ package geneticalg;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import org.jenetics.CharacterChromosome;
-import org.jenetics.CharacterGene;
-import org.jenetics.Genotype;
-import org.jenetics.Mutator;
-import org.jenetics.RouletteWheelSelector;
-import org.jenetics.SinglePointCrossover;
-import org.jenetics.TournamentSelector;
-import org.jenetics.engine.Engine;
-import org.jenetics.engine.EvolutionResult;
-import org.jenetics.engine.EvolutionStatistics;
-import org.jenetics.engine.limit;
-import org.jenetics.util.Factory;
-
 import geneticalg.brainfck.Brainfck;
 import geneticalg.customGenes.BFckChromosome;
 import geneticalg.customGenes.BFckGene;
+import io.jenetics.CharacterChromosome;
+import io.jenetics.CharacterGene;
+import io.jenetics.Genotype;
+import io.jenetics.MultiPointCrossover;
+import io.jenetics.Mutator;
+import io.jenetics.RouletteWheelSelector;
+import io.jenetics.SinglePointCrossover;
+import io.jenetics.TournamentSelector;
+import io.jenetics.engine.Engine;
+import io.jenetics.engine.EvolutionResult;
+import io.jenetics.engine.EvolutionStatistics;
+import io.jenetics.engine.Limits;
+import io.jenetics.util.Factory;
 
 public class GeneticsHello {
 
@@ -72,29 +72,17 @@ public class GeneticsHello {
 	}
 
 	private static void demo1() {
-		// prop = "Gastroenterocolita";
+		prop = "Hello World!";
 
 		Factory<Genotype<CharacterGene>> gtf = Genotype.of(CharacterChromosome.of(30));
 
-		// gtf.instances().forEach(x -> System.out.println(count++));
-
-//		Engine<CharacterGene, Long> eng = Engine.builder(GeneticsHello::checkFitness, gtf)
-//				.survivorsSelector(new TournamentSelector<>(5)).offspringSelector(new RouletteWheelSelector<>())
-//				.alterers(new Mutator<>(0.3), new SinglePointCrossover<>(0.4)).build();
-//
-//		Phenotype<CharacterGene, Long> p = eng.stream().limit(limit.byFitnessThreshold(new Long(110)))
-//				.collect(EvolutionResult.toBestPhenotype());
-
 		Engine<CharacterGene, Long> engine = Engine.builder(GeneticsHello::checkFitnessGeneticsHello, gtf)
 				.survivorsSelector(new TournamentSelector<>(5)).offspringSelector(new RouletteWheelSelector<>())
-				.alterers(new Mutator<>(0.3), new SinglePointCrossover<>(0.4)).build();
+				.alterers(new Mutator<>(0.3), new MultiPointCrossover<>(0.4)).build();
 
 		Consumer<? super EvolutionResult<CharacterGene, Long>> statistics = EvolutionStatistics.ofNumber();
 
-		Genotype<CharacterGene> result = engine.stream().limit(limit.byFitnessThreshold(similarity(prop, prop) - 1))// .limit(limit.byFitnessConvergence(100,
-				// 200,
-				// 10E-4))
-				// .limit(limit.bySteadyFitness(30000))
+		Genotype<CharacterGene> result = engine.stream().limit(Limits.byFitnessThreshold(similarity(prop, prop) - 1))
 				.peek(statistics).collect(EvolutionResult.toBestGenotype());
 
 		System.out.println(result);
@@ -122,7 +110,7 @@ public class GeneticsHello {
 		return similarity(prop, msg);
 
 	}
-	
+
 	private static void demoBFck() {
 		prop = "Hi";
 		Factory<Genotype<BFckGene>> bfg = Genotype.of(BFckChromosome.of(BFckGene.seq(100)));
@@ -132,8 +120,7 @@ public class GeneticsHello {
 
 		Consumer<? super EvolutionResult<BFckGene, Long>> statistics = EvolutionStatistics.ofNumber();
 
-		
-		Genotype<BFckGene> result = engine.stream().limit(limit.byFitnessThreshold(similarity(prop, prop) - 1))
+		Genotype<BFckGene> result = engine.stream().limit(Limits.byFitnessThreshold(similarity(prop, prop) - 1))
 				.peek(statistics).collect(EvolutionResult.toBestGenotype());
 
 		System.out.println(result);
@@ -142,7 +129,7 @@ public class GeneticsHello {
 	}
 
 	public static void main(String[] args) {
-		demoBFck();
+		demo1();
 	}
 
 }

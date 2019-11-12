@@ -5,6 +5,15 @@ import java.util.List;
 import geneticalg.timetable.entities.Course;
 
 public interface Constraint {
+	
+	//TODO
+	//Add for each teacher affiliations constraints
+	//Add disjoint rooms for courses constraints
+	//No gaps for groups and with or without gaps for teachers
+	//All days start at eight
+	
+	int HARD_CONSTRAINT = 10;
+	int SOFT_CONSTRAINT = 2;
 
 	Long checkConstraint(List<Course> timetable);
 	

@@ -3,11 +3,10 @@ package geneticalg.customGenes;
 import java.util.Iterator;
 import java.util.Random;
 
-import org.jenetics.Chromosome;
-import org.jenetics.util.ISeq;
-import org.jenetics.util.RandomRegistry;
-
 import geneticalg.brainfck.Brainfck;
+import io.jenetics.Chromosome;
+import io.jenetics.util.ISeq;
+import io.jenetics.util.RandomRegistry;
 
 public class BFckChromosome implements Chromosome<BFckGene> {
 

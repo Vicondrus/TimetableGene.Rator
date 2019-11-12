@@ -2,11 +2,11 @@ package geneticalg.customGenes;
 
 import java.util.Random;
 
-import org.jenetics.Gene;
-import org.jenetics.internal.math.random;
-import org.jenetics.util.ISeq;
-import org.jenetics.util.MSeq;
-import org.jenetics.util.RandomRegistry;
+import io.jenetics.Gene;
+import io.jenetics.internal.math.random;
+import io.jenetics.util.ISeq;
+import io.jenetics.util.MSeq;
+import io.jenetics.util.RandomRegistry;
 
 public class BFckGene implements Gene<Character, BFckGene> {
 
@@ -25,7 +25,7 @@ public class BFckGene implements Gene<Character, BFckGene> {
 
 	public static ISeq<BFckGene> seq(int length) {
 		Random r = RandomRegistry.getRandom();
-		return MSeq.<BFckGene>ofLength(length).fill(() -> new BFckGene(BFCK_CHARS.charAt(random.nextInt(r, 0, 7))))
+		return MSeq.<BFckGene>ofLength(length).fill(() -> new BFckGene(BFCK_CHARS.charAt(random.nextInt(0, 7, r))))
 				.toISeq();
 	}
 

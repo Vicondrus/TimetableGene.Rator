@@ -82,15 +82,17 @@ public class ContinuityConstraint implements Constraint {
 		List<Course> sorted = day.stream().sorted(Comparator.comparing(Course::getHour)).collect(Collectors.toList());
 		Long sum = 0L;
 		int count = 0;
-		int hours = 8;
+		int hours = Course.getMinHour();
 		for (int i = 0; i < sorted.size(); i++) {
+			//if(sorted.get(i).getHour() == 8)
+				//System.out.println("From 8");
 			if (sorted.get(i).getHour() != hours) {
 				count += Math.abs(sorted.get(i).getHour() - hours);
 			}
 			hours++;
 		}
-		if (count != 0)
-			sum += count * SOFT_CONSTRAINT;// new Double(Math.pow(SOFT_CONSTRAINT, count)).longValue();
+		//if (count != 0)
+		sum += count * SOFT_CONSTRAINT;// new Double(Math.pow(SOFT_CONSTRAINT, count)).longValue();
 		if (continuousHoursMin > sorted.size()) {
 			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(sorted.size() - continuousHoursMin))).longValue();
 		}

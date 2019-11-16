@@ -27,7 +27,7 @@ public class GeneticTester {
 		List<TeacherAmount> how1 = Arrays.asList(new TeacherAmount(t1, 5), new TeacherAmount(t2, 3),
 				new TeacherAmount(t3, 3), new TeacherAmount(t5, 5));
 		List<TeacherAmount> how2 = Arrays.asList(new TeacherAmount(t4, 4), new TeacherAmount(t2, 4),
-				new TeacherAmount(t3, 3));
+				new TeacherAmount(t3, 5));
 		GroupWeeklyConstraint c1 = new GroupWeeklyConstraint();
 		c1.setNecessaryHours(how1);
 		GroupWeeklyConstraint c2 = new GroupWeeklyConstraint();
@@ -41,7 +41,7 @@ public class GeneticTester {
 		g2.addConstraint(cc);
 		List<Teacher> ts = Teacher.getTeachers();
 		List<Group> gs = Group.getGroups();
-		Genetic.runEvolution();
+		Genetic.runEvolution(3);
 		// System.out.print(g.checkConstraints());
 	}
 

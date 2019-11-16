@@ -47,6 +47,9 @@ public class Fitness {
 				.collect(Collectors.summingLong(x -> x.getKey().checkConstraints(x.getValue())));
 		sum += roomTimetables.entrySet().stream()
 				.collect(Collectors.summingLong(x -> x.getKey().checkConstraints(x.getValue())));
+		if(sum<0) {
+			System.out.println("???");
+		}
 		return sum;
 	}
 

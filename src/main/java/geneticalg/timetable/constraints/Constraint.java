@@ -8,9 +8,9 @@ public interface Constraint {
 	
 	//TODO
 	//Add for each teacher affiliations constraints
-	//Add disjoint rooms for courses constraints
-	//No gaps for groups and with or without gaps for teachers
-	//All days start at eight
+	//Add disjoint rooms for courses constraints	//ADDED
+	//No gaps for groups //ADDED and with or without gaps for teachers
+	//All days start at eight	//Trying
 	
 	int HARD_CONSTRAINT = 10;
 	int SOFT_CONSTRAINT = 2;

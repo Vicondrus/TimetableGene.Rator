@@ -4,13 +4,9 @@
 package geneticalg.timetable.functions;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Teacher;
 import geneticalg.timetable.genetic.CourseGene;
@@ -20,7 +16,6 @@ import io.jenetics.Genotype;
 import io.jenetics.MultiPointCrossover;
 import io.jenetics.Mutator;
 import io.jenetics.RouletteWheelSelector;
-import io.jenetics.TournamentSelector;
 import io.jenetics.engine.Engine;
 import io.jenetics.engine.EvolutionResult;
 import io.jenetics.engine.EvolutionStatistics;
@@ -29,7 +24,7 @@ import io.jenetics.util.Factory;
 
 public class Genetic {
 
-	public static void runEvolution() {
+	public static void runEvolution(Integer minutes) {
 
 		Integer totalHours = Group.getGroups().stream().collect(Collectors.summingInt(x -> x.getNoHours()));
 
@@ -44,7 +39,7 @@ public class Genetic {
 
 		Consumer<? super EvolutionResult<CourseGene, Long>> statistics = EvolutionStatistics.ofNumber();
 
-		Genotype<CourseGene> result = engine.stream().limit(Limits.byExecutionTime(Duration.ofMinutes(2)))
+		Genotype<CourseGene> result = engine.stream().limit(Limits.byExecutionTime(Duration.ofMinutes(minutes)))
 				.limit(Limits.byFitnessThreshold(1L)).peek(statistics).collect(EvolutionResult.toBestGenotype());
 
 		SolutionHandler.handleResult(result);

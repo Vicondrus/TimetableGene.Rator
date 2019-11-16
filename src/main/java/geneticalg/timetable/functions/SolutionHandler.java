@@ -22,7 +22,7 @@ public class SolutionHandler {
 
 	public static void timetableForGroup(Group group, List<Course> timetable) {
 		System.out.print(String.format("%20s", group.getNumber()));
-		for (int i = 8; i <= 16; i++) {
+		for (int i = Course.getMinHour(); i <= Course.getMaxHour(); i++) {
 			System.out.print(String.format("|%20d|", i));
 		}
 		System.out.println();
@@ -31,7 +31,7 @@ public class SolutionHandler {
 			WeekDay z = WeekDay.values()[i];
 			List<Course> q = timetable.stream().filter(x -> x.getDay().equals(z)).collect(Collectors.toList());
 			if (!q.isEmpty()) {
-				for (int j = 8; j <= 16; j++) {
+				for (int j = Course.getMinHour(); j <= Course.getMaxHour(); j++) {
 					if (q != null) {
 						int y = j;
 						Course c = q.stream().filter(x -> x.getHour() == y).findAny().orElse(null);

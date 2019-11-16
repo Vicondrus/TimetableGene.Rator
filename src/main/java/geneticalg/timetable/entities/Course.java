@@ -8,7 +8,15 @@ import io.jenetics.util.RandomRegistry;
 
 public class Course {
 
-	private static final Integer MIN_HOUR = 8;
+	private static final Integer MIN_HOUR = 9;
+
+	public static Integer getMinHour() {
+		return MIN_HOUR;
+	}
+
+	public static Integer getMaxHour() {
+		return MAX_HOUR;
+	}
 
 	private static final Integer MAX_HOUR = 16;
 

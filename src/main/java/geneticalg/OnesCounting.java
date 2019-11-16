@@ -27,8 +27,8 @@ public class OnesCounting {
 
 		final Phenotype<BitGene, Integer> best = engine.stream()
 				// Truncate the evolution stream after " steady " generations
-				.limit(Limits.bySteadyFitness(7))
-				// The evolution will stop after maximal 10045 generations
+				//.limit(Limits.bySteadyFitness(7))
+				// The evolution will stop after maximal 100 generations
 				.limit(100)
 				// Update the evaluation statistics after each generation
 				.peek(statistics)

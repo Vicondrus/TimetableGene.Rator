@@ -1,5 +1,6 @@
 package geneticalg.timetable.constraints.tests;
 
+import geneticalg.timetable.entities.Affiliation;
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Teacher;
@@ -8,7 +9,7 @@ import geneticalg.timetable.entities.WeekDay;
 public class SuperpositionConstraintTester {
 
 	public static void main(String[] args) {
-		Teacher t1 = new Teacher("Marin");
+		Teacher t1 = new Teacher("Marin", Affiliation.Sciences);
 		Course c1 = new Course();
 		c1.setDay(WeekDay.FRIDAY);
 		c1.setHour(12);

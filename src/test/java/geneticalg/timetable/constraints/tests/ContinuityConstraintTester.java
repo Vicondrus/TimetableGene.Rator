@@ -3,6 +3,7 @@ package geneticalg.timetable.constraints.tests;
 import java.util.Arrays;
 
 import geneticalg.timetable.constraints.ContinuityConstraint;
+import geneticalg.timetable.entities.Affiliation;
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Room;
@@ -12,9 +13,9 @@ import geneticalg.timetable.entities.WeekDay;
 public class ContinuityConstraintTester {
 
 	public static void main(String[] args) {
-		Teacher t1 = new Teacher("Gustav");
-		Teacher t2 = new Teacher("Marin");
-		Teacher t3 = new Teacher("Ionut");
+		Teacher t1 = new Teacher("Gustav", Affiliation.Sciences);
+		Teacher t2 = new Teacher("Marin", Affiliation.Sciences);
+		Teacher t3 = new Teacher("Ionut", Affiliation.Sciences);
 		ContinuityConstraint cc = new ContinuityConstraint(3, 5);
 		Group g = new Group("12A");
 		g.addConstraint(cc);

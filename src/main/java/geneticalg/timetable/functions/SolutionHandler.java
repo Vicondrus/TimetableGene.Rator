@@ -36,7 +36,7 @@ public class SolutionHandler {
 						int y = j;
 						Course c = q.stream().filter(x -> x.getHour() == y).findAny().orElse(null);
 						if (c != null)
-							System.out.print(String.format("%21s|", c.getTeacher().getName()));
+							System.out.print(String.format("%5s %15s|", c.getRoom(), c.getTeacher().getName()));
 						else {
 							System.out.print(String.format("%21s|", ""));
 						}

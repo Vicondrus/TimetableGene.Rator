@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.Teacher;
-import geneticalg.timetable.entities.TeacherAmount;
+import geneticalg.timetable.entities.auxiliary.TeacherAmount;
 
 public class GroupWeeklyConstraint implements Constraint {
 

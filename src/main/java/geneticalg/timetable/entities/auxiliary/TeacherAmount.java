@@ -1,4 +1,6 @@
-package geneticalg.timetable.entities;
+package geneticalg.timetable.entities.auxiliary;
+
+import geneticalg.timetable.entities.Teacher;
 
 public class TeacherAmount {
 

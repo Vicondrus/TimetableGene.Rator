@@ -16,20 +16,31 @@ public class Teacher {
 	private List<Constraint> constraints = new ArrayList<Constraint>();
 
 	private List<Course> timetable = new ArrayList<Course>();
-	
+
 	private List<Room> rooms = new ArrayList<Room>();
 
-	public Teacher(String name) {
+	private Affiliation affiliation;
+
+	public Teacher(String name, Affiliation affiliation) {
 		this.name = name;
+		this.affiliation = affiliation;
 		constraints.add(new SuperpositionConstraint());
 		if (!teachers.stream().anyMatch(x -> x.getName().equals(this.name)))
 			teachers.add(this);
 	}
 
+	public Affiliation getAffiliation() {
+		return affiliation;
+	}
+
+	public void setAffiliation(Affiliation affiliation) {
+		this.affiliation = affiliation;
+	}
+
 	public void addConstraint(Constraint c) {
 		constraints.add(c);
 	}
-	
+
 	public void addRoom(Room r) {
 		rooms.add(r);
 	}

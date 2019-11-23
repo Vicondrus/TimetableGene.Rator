@@ -7,7 +7,7 @@ import geneticalg.timetable.entities.Course;
 public interface Constraint {
 	
 	//TODO
-	//Add for each teacher affiliations constraints
+	//Add for each teacher affiliations constraints	//ADDED
 	//Add disjoint rooms for courses constraints	//ADDED
 	//No gaps for groups //ADDED and with or without gaps for teachers
 	//All days start at eight	//Trying

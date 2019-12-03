@@ -1,9 +1,9 @@
-package geneticalg.timetable.constraints.tests;
+package geneticalg.timetable.main.tests;
 
 import java.util.Arrays;
 import java.util.List;
 
-import geneticalg.timetable.constraints.ContinuityConstraint;
+import geneticalg.timetable.constraints.ContinuityConstraintGroup;
 import geneticalg.timetable.constraints.DiversityConstraint;
 import geneticalg.timetable.constraints.GroupWeeklyConstraint;
 import geneticalg.timetable.entities.Affiliation;
@@ -34,7 +34,7 @@ public class GeneticTester {
 		c1.setNecessaryHours(how1);
 		GroupWeeklyConstraint c2 = new GroupWeeklyConstraint();
 		c2.setNecessaryHours(how2);
-		ContinuityConstraint cc = new ContinuityConstraint(4, 7);
+		ContinuityConstraintGroup cc = new ContinuityConstraintGroup(4, 7);
 		DiversityConstraint dc1 = new DiversityConstraint();
 		dc1.setNecessaryHours(how1);
 		DiversityConstraint dc2 = new DiversityConstraint();

@@ -9,19 +9,10 @@ import java.util.stream.Collectors;
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.WeekDay;
 
-public class ContinuityConstraint implements Constraint {
-
+public class ContinuityConstraintTeacher implements Constraint{
+	
 	private Integer continuousHoursMax;
 	private Integer continuousHoursMin;
-
-	public ContinuityConstraint(Integer continuousHoursMin, Integer continuousHoursMax) {
-		super();
-		this.continuousHoursMax = continuousHoursMax;
-		this.continuousHoursMin = continuousHoursMin;
-	}
-
-	public ContinuityConstraint() {
-	}
 
 	public Integer getContinuousHoursMax() {
 		return continuousHoursMax;
@@ -39,17 +30,32 @@ public class ContinuityConstraint implements Constraint {
 		this.continuousHoursMin = continuousHoursMin;
 	}
 
+	public ContinuityConstraintTeacher() {
+		super();
+	}
+
+	public ContinuityConstraintTeacher(Integer continuousHoursMax, Integer continuousHoursMin) {
+		super();
+		this.continuousHoursMax = continuousHoursMax;
+		this.continuousHoursMin = continuousHoursMin;
+	}
+
 	@Override
 	public Long checkConstraint(List<Course> timetable) {
 		Map<WeekDay, List<Course>> map = timetable.stream().collect(Collectors.groupingBy(Course::getDay));
 		Long sum = 0L;
 		for (Entry<WeekDay, List<Course>> e : map.entrySet()) {
-			sum += analyzeDayStartingMorning(e.getValue());
+			sum += analyzeDay(e.getValue());
 		}
 		return sum;
 	}
-
+	
 	public Long analyzeDay(List<Course> day) {
+		if(continuousHoursMax<continuousHoursMin) {
+			int temp = continuousHoursMax;
+			continuousHoursMax = continuousHoursMin;
+			continuousHoursMin = temp;
+		}
 		List<Course> sorted = day.stream().sorted(Comparator.comparing(Course::getHour)).collect(Collectors.toList());
 		Long sum = 0L;
 		int cont = 1;
@@ -74,30 +80,6 @@ public class ContinuityConstraint implements Constraint {
 		}
 		if (continuousHoursMax < cont) {
 			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMax))).longValue();
-		}
-		return sum;
-	}
-
-	public Long analyzeDayStartingMorning(List<Course> day) {
-		List<Course> sorted = day.stream().sorted(Comparator.comparing(Course::getHour)).collect(Collectors.toList());
-		Long sum = 0L;
-		int count = 0;
-		int hours = Course.getMinHour();
-		for (int i = 0; i < sorted.size(); i++) {
-			//if(sorted.get(i).getHour() == 8)
-				//System.out.println("From 8");
-			if (sorted.get(i).getHour() != hours) {
-				count += Math.abs(sorted.get(i).getHour() - hours);
-			}
-			hours++;
-		}
-		//if (count != 0)
-		sum += count * SOFT_CONSTRAINT;// new Double(Math.pow(SOFT_CONSTRAINT, count)).longValue();
-		if (continuousHoursMin > sorted.size()) {
-			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(sorted.size() - continuousHoursMin))).longValue();
-		}
-		if (continuousHoursMax < sorted.size()) {
-			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(sorted.size() - continuousHoursMax))).longValue();
 		}
 		return sum;
 	}

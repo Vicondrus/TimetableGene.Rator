@@ -33,14 +33,14 @@ public class ContinuityConstraintGroupTester {
 		
 		g.getTimetable().clear();
 		
-		Course c7 = new Course(g, t1, 8, WeekDay.MONDAY, r1);
-		Course c8 = new Course(g, t2, 9, WeekDay.MONDAY, r1);
-		Course c9 = new Course(g, t2, 10, WeekDay.MONDAY, r1);
-		Course c10 = new Course(g, t3, 11, WeekDay.MONDAY, r2);
-		Course c14 = new Course(g, t3, 8, WeekDay.FRIDAY, r1);
-		Course c11 = new Course(g, t3, 9, WeekDay.FRIDAY, r1);
-		Course c12 = new Course(g, t1, 10, WeekDay.FRIDAY, r2);
-		Course c13 = new Course(g, t1, 11, WeekDay.FRIDAY, r2);
+		Course c7 = new Course(g, t1, 9, WeekDay.MONDAY, r1);
+		Course c8 = new Course(g, t2, 10, WeekDay.MONDAY, r1);
+		Course c9 = new Course(g, t2, 11, WeekDay.MONDAY, r1);
+		Course c10 = new Course(g, t3, 12, WeekDay.MONDAY, r2);
+		Course c14 = new Course(g, t3, 9, WeekDay.FRIDAY, r1);
+		Course c11 = new Course(g, t3, 10, WeekDay.FRIDAY, r1);
+		Course c12 = new Course(g, t1, 11, WeekDay.FRIDAY, r2);
+		Course c13 = new Course(g, t1, 12, WeekDay.FRIDAY, r2);
 		g.getTimetable().addAll(Arrays.asList(c7, c8, c9, c10, c11, c12, c13, c14));
 		System.out.println(g.checkConstraints());
 	}

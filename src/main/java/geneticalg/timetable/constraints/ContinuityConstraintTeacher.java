@@ -9,10 +9,11 @@ import java.util.stream.Collectors;
 import geneticalg.timetable.entities.Course;
 import geneticalg.timetable.entities.WeekDay;
 
-public class ContinuityConstraintTeacher implements Constraint{
-	
+public class ContinuityConstraintTeacher implements Constraint {
+
 	private Integer continuousHoursMax;
 	private Integer continuousHoursMin;
+	private final WeekDay day;
 
 	public Integer getContinuousHoursMax() {
 		return continuousHoursMax;
@@ -30,14 +31,11 @@ public class ContinuityConstraintTeacher implements Constraint{
 		this.continuousHoursMin = continuousHoursMin;
 	}
 
-	public ContinuityConstraintTeacher() {
-		super();
-	}
-
-	public ContinuityConstraintTeacher(Integer continuousHoursMax, Integer continuousHoursMin) {
+	public ContinuityConstraintTeacher(Integer continuousHoursMax, Integer continuousHoursMin, WeekDay day) {
 		super();
 		this.continuousHoursMax = continuousHoursMax;
 		this.continuousHoursMin = continuousHoursMin;
+		this.day = day;
 	}
 
 	@Override
@@ -45,13 +43,14 @@ public class ContinuityConstraintTeacher implements Constraint{
 		Map<WeekDay, List<Course>> map = timetable.stream().collect(Collectors.groupingBy(Course::getDay));
 		Long sum = 0L;
 		for (Entry<WeekDay, List<Course>> e : map.entrySet()) {
-			sum += analyzeDay(e.getValue());
+			if (day.equals(WeekDay.WORKDAYS) || day.equals(e.getKey()))
+				sum += analyzeDay(e.getValue());
 		}
 		return sum;
 	}
-	
+
 	public Long analyzeDay(List<Course> day) {
-		if(continuousHoursMax<continuousHoursMin) {
+		if (continuousHoursMax < continuousHoursMin) {
 			int temp = continuousHoursMax;
 			continuousHoursMax = continuousHoursMin;
 			continuousHoursMin = temp;
@@ -69,7 +68,7 @@ public class ContinuityConstraintTeacher implements Constraint{
 				if (continuousHoursMin > cont) {
 					sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMin))).longValue();
 				}
-				if (continuousHoursMax < cont) {
+				else if (continuousHoursMax < cont) {
 					sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMax))).longValue();
 				}
 				cont = 1;
@@ -78,7 +77,7 @@ public class ContinuityConstraintTeacher implements Constraint{
 		if (continuousHoursMin > cont) {
 			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMin))).longValue();
 		}
-		if (continuousHoursMax < cont) {
+		else if (continuousHoursMax < cont) {
 			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMax))).longValue();
 		}
 		return sum;

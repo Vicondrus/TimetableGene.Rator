@@ -4,12 +4,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import geneticalg.timetable.constraints.ContinuityConstraintGroup;
+import geneticalg.timetable.constraints.ContinuityConstraintTeacher;
 import geneticalg.timetable.constraints.DiversityConstraint;
 import geneticalg.timetable.constraints.GroupWeeklyConstraint;
 import geneticalg.timetable.entities.Affiliation;
 import geneticalg.timetable.entities.Group;
 import geneticalg.timetable.entities.Room;
 import geneticalg.timetable.entities.Teacher;
+import geneticalg.timetable.entities.WeekDay;
 import geneticalg.timetable.entities.auxiliary.TeacherAmount;
 import geneticalg.timetable.functions.Genetic;
 
@@ -35,6 +37,8 @@ public class GeneticTester {
 		GroupWeeklyConstraint c2 = new GroupWeeklyConstraint();
 		c2.setNecessaryHours(how2);
 		ContinuityConstraintGroup cc = new ContinuityConstraintGroup(4, 7);
+		ContinuityConstraintTeacher ct = new ContinuityConstraintTeacher(3, 4, WeekDay.TUESDAY);
+		t3.addConstraint(ct);
 		DiversityConstraint dc1 = new DiversityConstraint();
 		dc1.setNecessaryHours(how1);
 		DiversityConstraint dc2 = new DiversityConstraint();

@@ -16,9 +16,9 @@ public class ConitinuityConstraintTeacherTester {
 		Teacher t1 = new Teacher("Gustav", Affiliation.Sciences);
 		Teacher t2 = new Teacher("Marin", Affiliation.Sciences);
 		Teacher t3 = new Teacher("Ionut", Affiliation.Sciences);
-		t1.addConstraint(new ContinuityConstraintTeacher(4, 8));
-		t2.addConstraint(new ContinuityConstraintTeacher(4, 8));
-		t3.addConstraint(new ContinuityConstraintTeacher(4, 8));
+		t1.addConstraint(new ContinuityConstraintTeacher(4, 8, WeekDay.WORKDAYS));
+		t2.addConstraint(new ContinuityConstraintTeacher(4, 8, WeekDay.WORKDAYS));
+		t3.addConstraint(new ContinuityConstraintTeacher(4, 8, WeekDay.WORKDAYS));
 		Group g = new Group("12A");
 		Room r1 = new Room("1");
 		Room r2 = new Room("2");

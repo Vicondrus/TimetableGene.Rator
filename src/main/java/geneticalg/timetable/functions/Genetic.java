@@ -40,7 +40,7 @@ public class Genetic {
 		Consumer<? super EvolutionResult<CourseGene, Long>> statistics = EvolutionStatistics.ofNumber();
 
 		Genotype<CourseGene> result = engine.stream().limit(Limits.byExecutionTime(Duration.ofMinutes(minutes)))
-				.limit(Limits.byFitnessThreshold(1L)).peek(statistics).collect(EvolutionResult.toBestGenotype());
+				.limit(Limits.byFitnessThreshold(1L)).limit(Limits.bySteadyFitness(50000)).peek(statistics).collect(EvolutionResult.toBestGenotype());
 
 		SolutionHandler.handleResult(result);
 		System.out.println(Fitness.checkFitnessOneChromosome(result));

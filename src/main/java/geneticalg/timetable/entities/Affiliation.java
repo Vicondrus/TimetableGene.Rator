@@ -2,6 +2,6 @@ package geneticalg.timetable.entities;
 
 public enum Affiliation {
 
-	Languages, Sciences, Other
+	Languages, Sciences, Anthropology, Other
 	
 }

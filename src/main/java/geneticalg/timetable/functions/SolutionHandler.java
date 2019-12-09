@@ -51,7 +51,7 @@ public class SolutionHandler {
 			System.out.print(String.format("|%20d|", i));
 		}
 		System.out.println();
-		for (int i = 0; i < WeekDay.values().length; i++) {
+		for (int i = 0; i < WeekDay.values().length-1; i++) {
 			System.out.print(String.format("%20s|", WeekDay.values()[i]));
 			WeekDay z = WeekDay.values()[i];
 			List<Course> q = timetable.stream().filter(x -> x.getDay().equals(z)).collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class SolutionHandler {
 			System.out.print(String.format("|%20d|", i));
 		}
 		System.out.println();
-		for (int i = 0; i < WeekDay.values().length; i++) {
+		for (int i = 0; i < WeekDay.values().length-1; i++) {
 			System.out.print(String.format("%20s|", WeekDay.values()[i]));
 			WeekDay z = WeekDay.values()[i];
 			List<Course> q = timetable.stream().filter(x -> x.getDay().equals(z)).collect(Collectors.toList());

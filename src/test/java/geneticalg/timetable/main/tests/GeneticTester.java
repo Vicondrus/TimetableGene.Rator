@@ -23,15 +23,27 @@ public class GeneticTester {
 		Teacher t3 = new Teacher("Physics", Affiliation.Sciences);
 		Teacher t4 = new Teacher("Maths2", Affiliation.Sciences);
 		Teacher t5 = new Teacher("ComputerScience", Affiliation.Sciences);
+		Teacher t6 = new Teacher("Music", Affiliation.Other);
+		Teacher t7 = new Teacher("GraphicDesign", Affiliation.Other);
+		Teacher t8 = new Teacher("French", Affiliation.Languages);
+		Teacher t9 = new Teacher("Geography", Affiliation.Anthropology);
+		Teacher t10 = new Teacher("History", Affiliation.Anthropology);
 		t1.addRoom(new Room("1"));
 		t2.addRoom(new Room("2"));
 		t3.addRoom(new Room("3"));
 		t4.addRoom(new Room("1"));
 		t5.addRoom(new Room("5"));
-		List<TeacherAmount> how1 = Arrays.asList(new TeacherAmount(t1, 5), new TeacherAmount(t2, 3),
-				new TeacherAmount(t3, 3), new TeacherAmount(t5, 5));
+		t6.addRoom(new Room("4"));
+		t7.addRoom(new Room("4"));
+		t8.addRoom(new Room("6"));
+		t9.addRoom(new Room("7"));
+		t10.addRoom(new Room("7"));
+		List<TeacherAmount> how1 = Arrays.asList(new TeacherAmount(t1, 5), new TeacherAmount(t2, 5),
+				new TeacherAmount(t3, 3), new TeacherAmount(t5, 4), new TeacherAmount(t6, 2), new TeacherAmount(t7, 1),
+				new TeacherAmount(t8, 3), new TeacherAmount(t9, 2), new TeacherAmount(t10, 2));
 		List<TeacherAmount> how2 = Arrays.asList(new TeacherAmount(t4, 4), new TeacherAmount(t2, 4),
-				new TeacherAmount(t3, 5));
+				new TeacherAmount(t3, 5), new TeacherAmount(t6, 1), new TeacherAmount(t7, 3), new TeacherAmount(t8, 4),
+				new TeacherAmount(t9, 2), new TeacherAmount(t10, 2));
 		GroupWeeklyConstraint c1 = new GroupWeeklyConstraint();
 		c1.setNecessaryHours(how1);
 		GroupWeeklyConstraint c2 = new GroupWeeklyConstraint();

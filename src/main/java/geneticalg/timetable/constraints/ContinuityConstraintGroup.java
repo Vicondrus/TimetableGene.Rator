@@ -65,10 +65,10 @@ public class ContinuityConstraintGroup implements Constraint {
 		//if (count != 0)
 		sum += count * HARD_CONSTRAINT;// new Double(Math.pow(SOFT_CONSTRAINT, count)).longValue();
 		if (continuousHoursMin > sorted.size()) {
-			sum += new Double(Math.pow(HARD_CONSTRAINT, Math.abs(sorted.size() - continuousHoursMin))).longValue();
+			sum += PENALTY.penalize(HARD_CONSTRAINT, sorted.size() - continuousHoursMin);
 		}
 		if (continuousHoursMax < sorted.size()) {
-			sum += new Double(Math.pow(HARD_CONSTRAINT, Math.abs(sorted.size() - continuousHoursMax))).longValue();
+			sum += PENALTY.penalize(HARD_CONSTRAINT, sorted.size() - continuousHoursMax);
 		}
 		return sum;
 	}

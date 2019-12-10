@@ -59,26 +59,26 @@ public class ContinuityConstraintTeacher implements Constraint {
 		Long sum = 0L;
 		int cont = 1;
 		if (sorted.size() == 1) {
-			return new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMin))).longValue();
+			return PENALTY.penalize(SOFT_CONSTRAINT, cont - continuousHoursMin);
 		}
 		for (int i = 0; i < sorted.size() - 1; i++) {
 			if (sorted.get(i).getHour() == sorted.get(i + 1).getHour() - 1) {
 				cont++;
 			} else {
 				if (continuousHoursMin > cont) {
-					sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMin))).longValue();
+					sum += PENALTY.penalize(SOFT_CONSTRAINT, cont - continuousHoursMin);
 				}
 				else if (continuousHoursMax < cont) {
-					sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMax))).longValue();
+					sum += PENALTY.penalize(SOFT_CONSTRAINT, cont - continuousHoursMax);
 				}
 				cont = 1;
 			}
 		}
 		if (continuousHoursMin > cont) {
-			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMin))).longValue();
+			sum += PENALTY.penalize(SOFT_CONSTRAINT, sorted.size() - continuousHoursMin);
 		}
 		else if (continuousHoursMax < cont) {
-			sum += new Double(Math.pow(SOFT_CONSTRAINT, Math.abs(cont - continuousHoursMax))).longValue();
+			sum += PENALTY.penalize(SOFT_CONSTRAINT, sorted.size() - continuousHoursMax);
 		}
 		return sum;
 	}

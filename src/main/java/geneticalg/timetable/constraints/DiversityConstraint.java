@@ -45,12 +45,12 @@ public class DiversityConstraint implements Constraint {
 		for (Entry<WeekDay, Map<Affiliation, Long>> e1 : map.entrySet()) {
 			for (Entry<Affiliation, Integer> e2 : minAffPerDay.entrySet()) {
 				Long act = e1.getValue().get(e2.getKey());
-				if(act == null)
-					sum += new Double(Math.pow(SOFT_CONSTRAINT, e2.getValue() - 0)).longValue();
+				if (act == null)
+					sum += PENALTY.penalize(SOFT_CONSTRAINT, e2.getValue() - 0);
 				else if (act < e2.getValue())
-					sum += new Double(Math.pow(SOFT_CONSTRAINT, e2.getValue() - act)).longValue();
+					sum += PENALTY.penalize(SOFT_CONSTRAINT, new Long(e2.getValue() - act).intValue());
 				else if (act > e2.getValue() + 1)
-					sum += new Double(Math.pow(SOFT_CONSTRAINT, act - e2.getValue() - 1)).longValue();
+					sum += PENALTY.penalize(SOFT_CONSTRAINT, new Long(act - e2.getValue() - 1).intValue());
 			}
 		}
 		return sum;

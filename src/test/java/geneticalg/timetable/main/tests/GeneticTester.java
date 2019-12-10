@@ -65,7 +65,7 @@ public class GeneticTester {
 		g2.addConstraint(dc2);
 		List<Teacher> ts = Teacher.getTeachers();
 		List<Group> gs = Group.getGroups();
-		Genetic.runEvolution(5);
+		Genetic.runEvolution(2);
 		// System.out.print(g.checkConstraints());
 	}
 

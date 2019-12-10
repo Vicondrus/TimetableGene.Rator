@@ -20,7 +20,7 @@ public class Fitness {
 		TimetableChromosome c = genotype.getChromosome().as(TimetableChromosome.class);
 		Map<Teacher, List<Course>> teacherTimetables = new HashMap<Teacher, List<Course>>();
 		Map<Group, List<Course>> groupTimetables = new HashMap<Group, List<Course>>();
-		Map<Room,List<Course>> roomTimetables = new HashMap<Room,List<Course>>();
+		Map<Room, List<Course>> roomTimetables = new HashMap<Room, List<Course>>();
 		c.stream().forEach(x -> {
 			Course course = x.getAllele();
 			if (course != null) {
@@ -47,9 +47,11 @@ public class Fitness {
 				.collect(Collectors.summingLong(x -> x.getKey().checkConstraints(x.getValue())));
 		sum += roomTimetables.entrySet().stream()
 				.collect(Collectors.summingLong(x -> x.getKey().checkConstraints(x.getValue())));
-		if(sum<0) {
+		if (sum < 0) {
 			System.out.println("???");
 		}
+		if (sum < 0)
+			sum = Long.MAX_VALUE;
 		return sum;
 	}
 

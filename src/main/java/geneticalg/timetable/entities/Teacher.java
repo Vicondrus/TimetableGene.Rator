@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import geneticalg.timetable.constraints.Constraint;
+import geneticalg.timetable.constraints.GroupWeeklyConstraint;
 import geneticalg.timetable.constraints.SuperpositionConstraint;
 
 public class Teacher {
@@ -49,6 +50,16 @@ public class Teacher {
 		if (constraints.isEmpty())
 			return 0L;
 		return constraints.stream().collect(Collectors.summingLong(x -> x.checkConstraint(timetable)));
+	}
+
+	public Long checkImperativeConstraints(List<Course> timetable) {
+		if (constraints.isEmpty())
+			return 0L;
+		return constraints.stream().filter(x -> {
+			if (x instanceof SuperpositionConstraint || x instanceof GroupWeeklyConstraint)
+				return true;
+			return false;
+		}).collect(Collectors.summingLong(x -> x.checkConstraint(timetable)));
 	}
 
 	public Long checkConstraints() {

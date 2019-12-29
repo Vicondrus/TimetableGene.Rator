@@ -38,6 +38,8 @@ public class GeneticTester {
 		t8.addRoom(new Room("6"));
 		t9.addRoom(new Room("7"));
 		t10.addRoom(new Room("7"));
+		t9.addRoom(new Room("8"));
+		t8.addRoom(new Room("2"));
 		List<TeacherAmount> how1 = Arrays.asList(new TeacherAmount(t1, 5), new TeacherAmount(t2, 5),
 				new TeacherAmount(t3, 3), new TeacherAmount(t5, 4), new TeacherAmount(t6, 2), new TeacherAmount(t7, 1),
 				new TeacherAmount(t8, 3), new TeacherAmount(t9, 2), new TeacherAmount(t10, 2));
@@ -50,7 +52,9 @@ public class GeneticTester {
 		c2.setNecessaryHours(how2);
 		ContinuityConstraintGroup cc = new ContinuityConstraintGroup(4, 7);
 		ContinuityConstraintTeacher ct = new ContinuityConstraintTeacher(3, 4, WeekDay.TUESDAY);
+		ContinuityConstraintTeacher ct2 = new ContinuityConstraintTeacher(2, 3, WeekDay.WORKDAYS);
 		t3.addConstraint(ct);
+		t2.addConstraint(ct2);
 		DiversityConstraint dc1 = new DiversityConstraint();
 		dc1.setNecessaryHours(how1);
 		DiversityConstraint dc2 = new DiversityConstraint();
@@ -63,9 +67,9 @@ public class GeneticTester {
 		g2.addConstraint(c2);
 		g2.addConstraint(cc);
 		g2.addConstraint(dc2);
-		List<Teacher> ts = Teacher.getTeachers();
-		List<Group> gs = Group.getGroups();
-		Genetic.runEvolution(2);
+		//List<Teacher> ts = Teacher.getTeachers();
+		//List<Group> gs = Group.getGroups();
+		Genetic.runEvolution(5);
 		// System.out.print(g.checkConstraints());
 	}
 

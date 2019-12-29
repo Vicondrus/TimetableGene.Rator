@@ -15,11 +15,11 @@ public interface Constraint {
 	//No gaps for groups //ADDED and with or without gaps for teachers	//ADDED
 	//All days start at eight	//Trying
 	
-	//Try to eliminate inviable individuals
+	//Try to eliminate inviable individuals	//BAD IDEA
 	//Maybe check from beginning when a timetable cannot be created
 	//Test multiplicative penalties	//ADDED
 	//Try different representation: Cartesian product of each course field + bit string to tell which is taken
-	//OR modify crossover to modify inside course	//BAD IDEEA
+	//OR modify crossover to modify inside course	//BAD IDEA
 	//start from existing timetable and find minimum number of changes to get to a new configuration
 	
 	

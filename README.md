@@ -1,1 +1,1 @@
-See TimetableGene.Rator_Documentation.pdf for more details.
+See TimetableGene_Rator_Documentation.pdf for more details.
